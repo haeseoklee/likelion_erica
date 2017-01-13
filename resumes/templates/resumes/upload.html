@@ -1,0 +1,121 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'home/sidebar.html' %}
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment" style="background-image: url({% static 'images/lion.jpg' %}) !important;">
+  {% include 'home/menu.html' %}
+    <div class="ui middle aligned center aligned grid">
+      <div class="column twelve wide form-holder grid">
+        <h1 class="center aligned header form-head"><strong>지원서 매뉴얼</strong></h1>
+        {% include 'resumes/manual.html' %}
+        {% if form.errors %}
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">업로드 에러</div>
+          <ul class="list">
+          {{form.non_field_errors}}
+          </ul>
+        </div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" id="apply_form">
+          {% csrf_token %}
+          <div class="ui center aligned fluid action input">
+            <input type="text" readonly>
+            <input type="file" name="document">
+            <div class="ui icon button">
+              <span style="margin:4px;">파일 선택</span><i class="cloud upload icon"></i>
+            </div>
+          </div>
+          <button class="ui large primary button" type="submit"><i class="upload icon"></i>제출하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% include 'home/footer.html' %}
+</div>
+{% endblock content%}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+  $('#apply_form').find('ul').remove();
+
+  $('.close').click(function(){
+    $(this)
+      .closest('.negative')
+      .remove();
+  });
+
+  $('input:text, .ui.button', '.ui.action.input')
+	  .on('click', function(e) {
+    	$('input:file', $(e.target).parents()).click();
+	});
+
+  $('input:file', '.ui.action.input')
+  	.on('change', function(e) {
+      	var name = e.target.files[0].name;
+      	$('input:text', $(e.target).parent()).val(name);
+  	});
+});
+</script>
+{% endblock script %}
+
+{% block style %}
+<style>
+.ui.input {
+  font-size: 1.2em;
+  margin-top: 30px;
+  margin-right: 30px;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+.import-color{
+  font-size: 1.2em;
+  color: #a70b0b;
+}
+
+.ui.grid>.column:not(.row), .ui.grid>.row>.column {
+  position: relative;
+  display: inline-block;
+  width: 6.25%;
+  padding-top: 2rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding-bottom: 2.5rem;
+  vertical-align: top;
+}
+
+.ui.action.input input[type="file"] {
+  display: none;
+}
+.ui.list {
+  color: #ffffff;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+.form-notice{
+  text-align: left;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin: 15px auto 15px auto;
+}
+
+.form-head {
+  font-size: 35px;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 15px auto 25px auto;
+}
+
+.form-holder{
+  margin-top: 8%;
+  margin-bottom: 5%;
+  max-width: 500px !important;
+  background: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+</style>
+{% endblock style %}

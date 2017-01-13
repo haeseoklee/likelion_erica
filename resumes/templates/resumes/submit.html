@@ -1,0 +1,48 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'home/sidebar.html' %}
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment" style="background-image: url({% static 'images/lion.jpg' %}) !important;">
+  {% include 'home/menu.html' %}
+    <div class="ui middle aligned center aligned grid">
+      <div class="column twelve wide form-holder grid">
+        <h1 class="center aligned header form-head"><strong>지원해 주셔서 감사합니다.</strong></h1>
+      </div>
+    </div>
+  </div>
+  {% include 'home/footer.html' %}
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+  $('.close').click(function(){
+    $(this)
+      .closest('.negative')
+      .remove();
+  });
+});
+</script>
+{% endblock script %}
+
+{% block style %}
+<style>
+.form-head {
+  font-size: 50px;
+  letter-spacing: 2px;
+  color: #fff;
+  margin: 15px auto 15px auto;
+}
+
+.form-holder{
+  margin-top: 20%;
+  margin-bottom: 5%;
+  max-width: 700px !important;
+  background: rgba(255,255,255,0.3);
+  border-radius: 4px;
+}
+</style>
+{% endblock style %}

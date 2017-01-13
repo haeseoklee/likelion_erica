@@ -1,0 +1,133 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'home/sidebar.html' %}
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment" style="background-image: url({% static 'images/lion.jpg' %}) !important;">
+  {% include 'home/menu.html' %}
+    <div class="ui middle aligned center aligned grid">
+      <div class="column twelve wide form-holder grid">
+        <h1 class="center aligned header form-head"><strong>LIKELION</strong><br>X<br><strong>ERICA</strong></h1>
+        {% if form.errors %}
+        <div class="ui negative message">
+          <i class="close icon"></i>
+          <div class="header">회원가입 에러</div>
+          <ul class="list">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{error}}</li>
+            {% endfor %}
+          {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <form class="ui large form" method="post">
+          {% csrf_token %}
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              {{ form.username }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              {{ form.real_name }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="mail icon"></i>
+              {{ form.email }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="call icon"></i>
+              {{ form.phone_number }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="student icon"></i>
+              {{ form.student_number }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="student icon"></i>
+              {{ form.majoring }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              {{ form.grade }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              {{ form.register }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              {{ form.password }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              {{ form.password2 }}
+            </div>
+          </div>
+          <input type="submit" value="회원가입" class="ui fluid large inverted submit button"/>
+          <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      </div>
+    </div>
+  </div>
+  {% include 'home/footer.html' %}
+</div>
+
+{% endblock content %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+  $('select').addClass('ui dropdown').dropdown();
+  $('.close').click(function(){
+    $(this)
+      .closest('.negative')
+      .remove();
+  });
+});
+</script>
+{% endblock script %}
+
+{% block style %}
+<style>
+.ui.selection.dropdown {
+  min-width: 100%;
+}
+#new_user{
+  margin-top: 10px;
+}
+.form-head {
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 15px auto 15px auto;
+}
+
+.form-holder{
+  margin-top: 10%;
+  margin-bottom: 5%;
+  max-width: 400px !important;
+  background: rgba(255,255,255,0.5);
+  border-radius: 4px;
+}
+</style>
+{% endblock style %}

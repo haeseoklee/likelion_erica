@@ -1,0 +1,81 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'home/sidebar.html' %}
+<div class="pusher">
+  <div class="ui inverted vertical masthead center aligned segment" style="background-image: url({% static 'images/lion.jpg' %}) !important;">
+  {% include 'home/menu.html' %}
+    <div class="ui middle aligned center aligned grid">
+      <div class="column twelve wide form-holder grid">
+        <h1 class="center aligned header form-head"><strong>LIKELION</strong><br>X<br><strong>ERICA</strong></h1>
+        {% if form.errors %}
+        <div class="ui center aligned negative message">
+          <i class="close icon"></i>
+          <div class="header">로그인 에러</div>
+          <ul class="list">
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{error}}</li>
+            {% endfor %}
+          {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        <form method="post" class="ui large form">
+          {% csrf_token %}
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>{{ form.username }}
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>{{ form.password }}
+            </div>
+          </div>
+          <input type="submit" value="로그인" class="ui fluid large inverted submit button"/>
+          <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      </div>
+    </div>
+  </div>
+  {% include 'home/footer.html' %}
+</div>
+
+{% endblock content %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+  $('.close').click(function(){
+    $(this)
+      .closest('.negative')
+      .remove();
+  });
+});
+</script>
+{% endblock script %}
+
+{% block style %}
+<style>
+#reset_password{
+  margin-top: 10px;
+}
+.form-head {
+    font-size: 40px;
+    letter-spacing: 2px;
+    color: #fff;
+    margin: 15px auto 15px auto;
+}
+
+.form-holder{
+  margin-top: 10%;
+  margin-bottom: 5%;
+  max-width: 300px !important;
+  background: rgba(255,255,255,0.5);
+  border-radius: 4px;
+}
+</style>
+{% endblock style %}

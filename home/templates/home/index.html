@@ -1,0 +1,87 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'home/sidebar.html' %}
+<div class="pusher">
+	<div class="ui inverted vertical masthead center aligned segment" style="background-image: url({% static 'images/lion.jpg' %}) !important;">
+		{% include 'home/menu.html' %}
+	  <div class="ui text container">
+	    <h1 class="ui inverted header">
+	      <strong>LIKELION</strong><br>
+	      X <br>
+	      <strong>HANYANG<br>ERICA</strong>
+	    </h1>
+	    <h2>컴퓨터를 전혀 모르는 학생들이 코딩 교육을 통해 <br>원하는 <strong>IT</strong>서비스를 직접 런칭한다!</h2><br>
+			<a href="{% url 'apply:apply' %}">
+			<div class="ui huge inverted button">
+	      지원하기<i class="right arrow icon"></i>
+	    </div>
+			</a>
+	  </div>
+	</div>
+	<div class="ui vertical stripe quote segment">
+		<div class="ui equal width stackable internally celled grid">
+			<div class="center aligned row">
+				<div class="column">
+					<a href="http://likelion.org/">
+					<img class="ui medium rounded centered image" src="{% static 'images/likelion_logo.png' %}">
+					</a>
+				</div>
+				<div class="column">
+					<a href="http://www.hanyang.ac.kr/">
+					<img class="ui medium rounded centered image" src="{% static 'images/HYU_initial_basic.png' %}">
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="ui vertical stripe segment">
+		<div class="ui text container">
+			<h3 class="ui header" style="margin-bottom:100px;">EDUCATION PROCESS</h3>
+			<h4 class="ui header">운영진 선발</h4>
+			<h2 class="ui header"><i class="user icon"></i></h2>
+			<p>
+				공부를 돕고 커리큘럼 및 행사 운영을 함께할 운영진을 선발합니다. 면접을 통해 소프트웨어에 대한 이해가 높은 이들을 선발하며, 운영진과 학생의 비율을 1:10으로 유지합니다.
+			</p>
+			<h5 class="ui horizontal header divider">1-2월</h5>
+			<h4 class="ui header">학생 선발</h4>
+			<h2 class="ui header"><i class="users icon"></i></h2>
+			<p>
+				자신이 만들고 싶은 서비스를 포함한 자유 양식의 자기소개서로 학생을 선발합니다. 학습 의지와 만들고자 하는 서비스에 대한 열의를 중심으로 평가합니다. 기초생활수급자 및 차상위계층은 모두 선발합니다.
+			</p>
+			<h5 class="ui horizontal header divider">3-7월</h5>
+			<h4 class="ui header">온라인 수업 및 오프라인 세미나</h4>
+			<h2 class="ui header"><i class="university icon"></i></h2>
+			<p>
+				매년 새로운 커리큘럼으로 진행되는 강의를 온라인으로 수강합니다. 또한 지역/학교 별로 팀을 이뤄 오프라인 세미나를 가집니다. 세미나에서는 강의 내용 복습과 심화 스터디 그리고 만들 서비스에 대한 아이디어 회의와 기획을 진행합니다.
+			</p>
+			<h5 class="ui horizontal header divider">8-9월</h5>
+			<h4 class="ui header">아이디어톤 및 해커톤</h4>
+			<h2 class="ui header"><i class="world icon"></i></h2>
+			<p>
+				자신이 가진 아이디어를 구현할 수 있도록 아이디어톤 과정에서 팀빌딩 및 기획을 수행하고, 이를 통해 구체화한 아이디어를 해커톤 행사를 통해 실제 서비스로 개발합니다. 해커톤 행사를 통해 모든 공식 일정이 마무리되며, 모든 과정을 이수한 학생들은 멋사 네트워크의 공식 일원이 됩니다.
+			</p>
+			<div class="more-info">
+			<a href="http://likelion.org/home/index" class="ui large secondary button">
+				더 알아보기
+			</a>
+			</div>
+		</div>
+	</div>
+
+  {% include 'home/footer.html' %}
+</div>
+{% endblock content %}
+
+{% block script %}
+<script>
+</script>
+{% endblock script %}
+
+{% block style %}
+<style>
+
+</style>
+{% endblock style %}
