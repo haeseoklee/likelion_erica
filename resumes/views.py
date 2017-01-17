@@ -12,7 +12,7 @@ def model_form_upload(request):
         form = ResumeForm(request.POST, request.FILES)
         if form.is_valid():
             obj = form.save(commit=False)
-            user = get_username(request)
+            user = get_username(request);
             obj.upload_user = user
             obj.upload_user_real_name = user.profile.real_name
             obj.upload_user_student_number = user.profile.student_number
