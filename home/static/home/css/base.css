@@ -16,7 +16,7 @@
 }
 
 .masthead.segment {
-  min-height: 700px;
+  min-height: 900px;
   padding: 1em 0em;
 }
 .ui.grid>.row>.column>img, .ui.grid>.row>img {
@@ -28,7 +28,7 @@
 }
 
 .masthead h1.ui.header {
-  margin-top: 1.7em;
+  margin-top: 2.5em;
   margin-bottom: 0em;
   font-size: 4em;
   font-weight: normal;
